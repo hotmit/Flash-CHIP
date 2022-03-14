@@ -6,13 +6,12 @@
 ```
 Follow the original instruction below
 
-Guide for CHIP image server installation:
-    Once done, connect the composite tv input
-    User: root
-    Pw: chip (default)
-    
-    # type this in the shell
-    nmtui (use this to set ur wifi password) 
+Once done, connect the composite tv input. Use the cred below
+User: root
+Pw: chip (default)
+
+# type this in the shell to change network settings
+nmtui (use this to set ur wifi password) 
 ```
 
 ## Change Source List
@@ -35,7 +34,7 @@ sudo apt update
 [Ref](https://yoursunny.com/t/2019/bye-CHIP/)
 [Kernel Build Script](https://github.com/kaplan2539/CHIP-Debian-Kernel)
 ```
-Copie from the build script in the ref link above:
+Copied from the build script in the ref link above:
     # Add this repository
     wget -qO - https://kaplan2539.github.io/CHIP-Debian-Kernel/PUBLIC.KEY | sudo apt-key add -
     echo "deb http://kaplan2539.github.io/CHIP-Debian-Kernel jessie main" | sudo tee --append /etc/apt/sources.list
@@ -45,7 +44,7 @@ Copie from the build script in the ref link above:
     sudo apt-get install linux-image-4.4.138-chip rtl8723bs-mp-driver-modules-4.4.138 chip-mali-modules-4.4.138
     
 
-# upgrade the packages
+# upgrade the packages after kernel upgrade
 nano etc/apt/sources.list
     Change every jessie to stretch.
     Delete jfpossibilities and kaplan2539 repositories, as they do not provide packages for Debian Stretch.
@@ -54,6 +53,12 @@ nano etc/apt/sources.list
 sudo apt update
 sudo apt full-upgrade 
 ```
+
+# Helpful Links
+* [Archive Page](https://archive.org/details/C.h.i.p.FlashCollection)
+* [Original Chrome Tool + Images 1.7GB](http://chip.jfpossibilities.com/flash-chrome/)
+* [Pihole Ads blocking with CHIP](https://docs.pi-hole.net/main/basic-install/)
+
 
 ---
 ---
