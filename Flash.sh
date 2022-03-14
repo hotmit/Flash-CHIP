@@ -34,9 +34,12 @@ echo " enter f for Force Clean "
 echo " ++++++++++++++++++++++++++++++++++++++++++ "
 echo " Then press enter please " 
 
+
+
+echo "$(realpath platform-tool):$PATH"
+exit
+
 read flavour
-
-
 
 echo -e "\n Setting up environment"
 sudo apt -y update
@@ -51,6 +54,10 @@ sudo apt -y install \
  curl \
  wget \
  sunxi-tools \
+
+# the newer version of fastboot, doesn't have -i or -u option
+#   use the binary in this repo to avoid fastboot error
+export PATH="$(realpath platform-tool):$PATH"
 
 echo -e "\n Adding current user to dialout group"
 sudo usermod -a -G dialout $(logname)
