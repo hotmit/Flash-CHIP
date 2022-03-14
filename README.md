@@ -1,3 +1,63 @@
+# What changed in this repo
+* Added old & compatible platform tools
+* Upgrade to Debian 9 
+
+## Flash
+```
+Follow the original instruction below
+
+Guide for CHIP image server installation:
+    Once done, connect the composite tv input
+    User: root
+    Pw: chip (default)
+    
+    # type this in the shell
+    nmtui (use this to set ur wifi password) 
+```
+
+## Change Source List
+[Ref](http://chip.jfpossibilities.com/chip/debian/)
+```
+sudo nano /etc/apt/sources.list
+find: deb http://opensource.nextthing.co/chip/debian/repo jessie main
+    replace with: deb http://chip.jfpossibilities.com/chip/debian/repo jessie main
+    
+sudo nano /etc/apt/preferences
+    Replace with: (3 lines below)
+        Package: *
+        Pin: origin chip.jfpossibilities.com
+        Pin-Priority: 1050
+        
+sudo apt update          
+```
+
+## Upgrade to Debian Sketch
+[Ref](https://yoursunny.com/t/2019/bye-CHIP/)
+[Kernel Build Script](https://github.com/kaplan2539/CHIP-Debian-Kernel)
+```
+Copie from the build script in the ref link above:
+    # Add this repository
+    wget -qO - https://kaplan2539.github.io/CHIP-Debian-Kernel/PUBLIC.KEY | sudo apt-key add -
+    echo "deb http://kaplan2539.github.io/CHIP-Debian-Kernel jessie main" | sudo tee --append /etc/apt/sources.list
+    sudo apt-get update
+    
+    # Install the new kernel
+    sudo apt-get install linux-image-4.4.138-chip rtl8723bs-mp-driver-modules-4.4.138 chip-mali-modules-4.4.138
+    
+
+# upgrade the packages
+nano etc/apt/sources.list
+    Change every jessie to stretch.
+    Delete jfpossibilities and kaplan2539 repositories, as they do not provide packages for Debian Stretch.
+    
+# finally run the upgrade command
+sudo apt update
+sudo apt full-upgrade 
+```
+
+---
+---
+---
 # Flash-CHIP
 Ready to use Flash environment for the C.H.I.P Single Board Computer
 
@@ -31,7 +91,9 @@ Alternatively try a different (shorter, or higher quality) USB cable and check i
 
 If this dos not work Install sunxi-tool v1.4.1:
 ```bash
-git clone --branch v1.4.1  https://github.com/linux-sunxi/sunxi-tools.git
+sudo apt install libusb-1.0-0-dev libz-dev libfdt-dev
+
+git clone --branch v1.4.2  https://github.com/linux-sunxi/sunxi-tools.git
 cd sunxi-tool/
 make install-all install-misc
 cd ../
@@ -39,4 +101,4 @@ cd ../
 ```
 ## Support my work by Donating 
 
-https://www.paypal.me/a13tech
+https://www.paypal.me/a13tech (the original developer)
