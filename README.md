@@ -99,7 +99,7 @@ If this dos not work Install sunxi-tool v1.4.1:
 sudo apt install libusb-1.0-0-dev libz-dev libfdt-dev
 
 git clone --branch v1.4.2  https://github.com/linux-sunxi/sunxi-tools.git
-cd sunxi-tool/
+cd sunxi-tools/
 make install-all install-misc
 cd ../
 ./Flash.sh
